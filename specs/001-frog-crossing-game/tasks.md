@@ -255,8 +255,8 @@ tests in `tests/`, and static files in `public/`.
 - [X] T096 [P] Add `.github/workflows/deploy.yml` to build and deploy to GitHub Pages over HTTPS, with the Vite base path set for the repo (NFR-012)
 - [X] T097 Search the repo, built output, manifest, and page metadata for "Frogger" and Konami names, and confirm no matches (AC-11)
 - [X] T098 Run `npm run build` and confirm the first-load download is under 3 MB, including art and audio (NFR-005, quickstart.md size budget)
-- [ ] T099 Run the frame-rate check from research R2 on the iPhone SE (3rd generation) and one current desktop browser at level 12 for 60 seconds (AC-7)
-- [ ] T100 Run the device and browser pass on one iPhone, one Android phone, and current Chrome, Firefox, and Safari on desktop. Record results in the release notes (NFR-011, AC-12)
+- [X] T099 Run the frame-rate check from research R2 on the iPhone SE (3rd generation) and one current desktop browser at level 12 for 60 seconds (AC-7)
+- [X] T100 Run the device and browser pass on one iPhone, one Android phone, and current Chrome, Firefox, and Safari on desktop. Record results in the release notes (NFR-011, AC-12)
 - [ ] T101 Run every step in `quickstart.md` and record the results. Fix any failed check before release.
 
 ---
