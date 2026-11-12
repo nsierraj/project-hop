@@ -58,10 +58,10 @@ let highScores: ScoreEntry[] = loadHighScores(store, cfg.game.highScores.maxEntr
 const canvas = document.getElementById('game') as HTMLCanvasElement;
 const ui = document.getElementById('ui') as HTMLElement;
 const view = createCanvasView(canvas, cfg.layout.grid.columns, cfg.layout.grid.rows, HUD_ROWS);
-const game = new Game(cfg, Math.floor(Math.random() * 0xffffffff));
+const debug = createDebugOverlay();
+const game = new Game(cfg, debugSeed() ?? Math.floor(Math.random() * 0xffffffff));
 const board = new SoundBoard();
 const music = new Music(() => board.context());
-const debug = createDebugOverlay();
 const touchDevice = window.matchMedia('(pointer: coarse)').matches;
 const clock = new FixedClock();
 
@@ -287,15 +287,39 @@ function maybeShowStorageNotice(): void {
 function startGame(): void {
   pending = [];
   unlockAudio();
-  game.start(settings.speedAssist, debugStartLevel());
+  game.start(settings.speedAssist, debugParam('level', 1), debugParam('lives', cfg.game.lives.start));
   setScreen('none');
   music.start(settings.musicVolume, settings.muted);
 }
 
-/** Level to start at. Only the debug overlay (?debug) can change it, for the frame-rate check. */
-function debugStartLevel(): number {
-  if (!debug.enabled) return 1;
-  return Number(new URLSearchParams(window.location.search).get('level')) || 1;
+/**
+ * Debug-only URL options for the device and end-to-end checks: ?debug&level=, &lives=, &seed=.
+ * They have no effect unless ?debug is present, so normal play is unchanged.
+ */
+function debugParam(name: string, fallback: number): number {
+  if (!debug.enabled) return fallback;
+  const value = Number(new URLSearchParams(window.location.search).get(name));
+  return Number.isFinite(value) && value > 0 ? value : fallback;
+}
+
+function debugSeed(): number | null {
+  if (!debug.enabled) return null;
+  const value = new URLSearchParams(window.location.search).get('seed');
+  return value === null ? null : Number(value) >>> 0;
+}
+
+/** Read-only state for end-to-end tests. Exposed only with ?debug. */
+if (debug.enabled) {
+  (window as unknown as { __hop: () => unknown }).__hop = () => ({
+    mode: game.mode,
+    screen,
+    level: game.level,
+    score: game.score,
+    lives: game.lives,
+    row: game.frog.row,
+    col: game.frog.col,
+    deathCause: game.deathCause,
+  });
 }
 
 function applySettings(): void {

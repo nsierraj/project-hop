@@ -157,7 +157,7 @@ tests in `tests/`, and static files in `public/`.
 ### Tests for User Story 4
 
 - [X] T060 [P] [US4] Write `tests/unit/swipe.test.ts`: a swipe of at least 24 CSS px on the dominant axis makes one hop; a tap hops forward; a second gesture before the first hop ends is buffered or dropped per FR-6 (FR-31)
-- [ ] T061 [US4] Write `tests/e2e/touch.spec.ts` in the phone project: swipes and taps move the frog; the page does not scroll, zoom, or refresh during play (FR-032); hiding the page pauses the game (FR-036). Depends on T063, T064, T065.
+- [X] T061 [US4] Write `tests/e2e/touch.spec.ts` in the phone project: swipes and taps move the frog; the page does not scroll, zoom, or refresh during play (FR-032); hiding the page pauses the game (FR-036). Depends on T063, T064, T065.
 
 ### Implementation for User Story 4
 
@@ -183,7 +183,7 @@ tests in `tests/`, and static files in `public/`.
 
 - [X] T069 [P] [US5] Write `tests/unit/speedAssist.test.ts`: speed assist sets lane speed to 70% and the timer to 45 seconds; the setting can only change between games (FR-050)
 - [X] T070 [P] [US5] Write `tests/unit/contrast.test.ts`: every UI text token in `src/render/palette.ts` meets 4.5:1 against its background (FR-052)
-- [ ] T071 [US5] Write `tests/e2e/keyboard.spec.ts` in the desktop project: a full game from title through game over and initials entry using only the keyboard, with a visible focus ring on every control (AC-9, FR-38). This test is completed in US6 after initials entry exists. Depends on T074, T087.
+- [X] T071 [US5] Write `tests/e2e/keyboard.spec.ts` in the desktop project: a full game from title through game over and initials entry using only the keyboard, with a visible focus ring on every control (AC-9, FR-38). This test is completed in US6 after initials entry exists. Depends on T074, T087.
 
 ### Implementation for User Story 5
 
@@ -257,7 +257,7 @@ tests in `tests/`, and static files in `public/`.
 - [X] T098 Run `npm run build` and confirm the first-load download is under 3 MB, including art and audio (NFR-005, quickstart.md size budget)
 - [X] T099 Run the frame-rate check from research R2 on the iPhone SE (3rd generation) and one current desktop browser at level 12 for 60 seconds (AC-7)
 - [X] T100 Run the device and browser pass on one iPhone, one Android phone, and current Chrome, Firefox, and Safari on desktop. Record results in the release notes (NFR-011, AC-12)
-- [ ] T101 Run every step in `quickstart.md` and record the results. Fix any failed check before release.
+- [X] T101 Run every step in `quickstart.md` and record the results. Fix any failed check before release.
 
 ---
 

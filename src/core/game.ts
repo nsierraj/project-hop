@@ -80,12 +80,12 @@ export class Game {
    * Starts a new game. The same seed always produces the same game.
    * startLevel is used by the debug frame-timing check (?debug&level=12) and defaults to 1.
    */
-  start(assisted: boolean, startLevel = 1): void {
+  start(assisted: boolean, startLevel = 1, startLives = this.cfg.game.lives.start): void {
     this.rng = new Rng(this.seed);
     this.assisted = assisted;
     this.level = Math.max(1, Math.floor(startLevel));
     this.score = 0;
-    this.lives = this.cfg.game.lives.start;
+    this.lives = Math.max(1, Math.floor(startLives));
     this.bonusLifeAwarded = false;
     this.bays = createBays(this.grid.bayCols.length);
     this.deathTicks = 0;

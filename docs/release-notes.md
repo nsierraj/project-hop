@@ -30,3 +30,28 @@ Per-step results were reported as a single overall pass by the owner on 2026-11-
 
 Automated proxies (headless browsers, not hardware): end-to-end tests pass in Chromium, Firefox,
 and WebKit, and the frame-rate check passes at 60 fps or higher in all four projects.
+
+## Quickstart run (T101)
+
+Run on 2026-11-12 from a clean install (`npm ci`), following
+`specs/001-frog-crossing-game/quickstart.md`.
+
+| Step | Result |
+|------|--------|
+| Clean install | Pass |
+| Dev server responds | Pass (HTTP 200) |
+| Unit tests (`npm test`) | Pass, 58 tests |
+| Lint and type-check | Pass |
+| Contrast check (`npm run contrast`) | Pass, 4 pairs at 4.5:1 or more |
+| Colour-blindness check (`npm run colorblind`) | Pass, 11 pairs at Delta E 10 or more |
+| Production build | Pass |
+| Shipped size | 69.3 KB against a 3072 KB budget |
+| Naming check (no Frogger or Konami) | Pass |
+| End-to-end suite (`npm run test:e2e`) | Pass, 33 passed, 15 skipped by project design |
+| Load budget on throttled 4G | Pass, first visit 424 ms (budget 3000), repeat 22 ms (budget 1000) |
+| Frame rate at level 12 (automated proxy) | Pass, 60 fps or more in all four browser projects |
+| Device frame rate and browser pass (AC-7, AC-12) | Pass, recorded above |
+
+The 15 skipped tests are the phone-only touch tests on desktop projects, and the load test on
+non-Chromium browsers, which uses the Chrome DevTools protocol.
+

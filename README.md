@@ -38,6 +38,7 @@ Add `?debug` to the URL to show the frame-timing overlay.
 | `npm run test:e2e` | End-to-end tests (Playwright, phone and desktop projects) |
 | `npm run lint` | ESLint |
 | `npm run contrast` | WCAG contrast check for UI text |
+| `npm run colorblind` | Colour-vision simulation check for hazards (AC-10) |
 
 First-time end-to-end setup: `npx playwright install chromium webkit`.
 

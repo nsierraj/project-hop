@@ -53,4 +53,40 @@ test.describe('keyboard only', () => {
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog', { name: 'Project Hop' })).toBeVisible();
   });
+
+  test('plays to game over, enters initials, and keeps the score after a reload', async ({ page }) => {
+    // One life and a fixed seed: the frog dies quickly, so the run reaches game over.
+    await page.goto('/?debug&lives=1&seed=7');
+    await expect(page.getByRole('dialog').first()).toBeVisible();
+    if (await page.getByRole('dialog', { name: 'How to play' }).isVisible()) {
+      await page.keyboard.press('Enter');
+    }
+    await page.getByRole('button', { name: 'Start game' }).focus();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+
+    // A forward hop scores 10 points, so the run qualifies for the table.
+    await page.keyboard.press('ArrowUp');
+
+    const initials = page.getByRole('dialog', { name: 'New high score' });
+    await expect(initials).toBeVisible({ timeout: 60_000 });
+    const entry = page.getByRole('textbox', { name: 'Initials' });
+    await expect(entry).toBeFocused();
+    await page.keyboard.type('abc');
+    await page.keyboard.press('Enter');
+
+    await expect(page.getByRole('dialog', { name: 'High scores' })).toBeVisible();
+    await expect(page.getByRole('cell', { name: 'ABC' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Back' })).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('dialog', { name: 'Project Hop' })).toBeVisible();
+
+    // The entry survives a reload (AC-6).
+    await page.reload();
+    await expect(page.getByRole('dialog').first()).toBeVisible();
+    await page.keyboard.press('ArrowDown');
+    await expect(page.getByRole('button', { name: 'High scores' })).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('cell', { name: 'ABC' })).toBeVisible();
+  });
 });
