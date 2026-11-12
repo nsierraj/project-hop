@@ -1,0 +1,25 @@
+{
+  "lives": { "start": 3, "max": 5 },
+  "bonusLife": { "scoreThreshold": 10000 },
+  "lifeTimerSeconds": 30,
+  "warningSeconds": 5,
+  "points": {
+    "forwardHop": 10,
+    "bayReached": 50,
+    "timeBonusPerSecond": 10,
+    "levelCleared": 1000
+  },
+  "hop": { "durationMs": 120, "bufferSize": 1 },
+  "swipe": { "minDistanceCssPx": 24, "maxDurationMs": 400 },
+  "dive": {
+    "surfacedMs": 3000,
+    "sinkingMs": 1000,
+    "submergedMs": 2000,
+    "risingMs": 800
+  },
+  "divingSinkWarningMs": 750,
+  "speedAssist": { "laneSpeedFactor": 0.7, "lifeTimerSeconds": 45 },
+  "highScores": { "maxEntries": 10, "initialsLength": 3 },
+  "levelClearCelebrationMs": 2000,
+  "deathAnimationMs": 500
+}

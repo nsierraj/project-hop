@@ -1,0 +1,18 @@
+{
+  "grid": { "columns": 13, "rows": 13 },
+  "rows": [
+    { "name": "home", "kind": "home" },
+    { "name": "river-1", "kind": "river", "direction": "right", "spawn": "log" },
+    { "name": "river-2", "kind": "river", "direction": "left", "spawn": "turtle" },
+    { "name": "river-3", "kind": "river", "direction": "right", "spawn": "log" },
+    { "name": "river-4", "kind": "river", "direction": "left", "spawn": "log" },
+    { "name": "river-5", "kind": "river", "direction": "right", "spawn": "turtle" },
+    { "name": "median", "kind": "median" },
+    { "name": "road-1", "kind": "road", "direction": "left", "spawn": "vehicle" },
+    { "name": "road-2", "kind": "road", "direction": "right", "spawn": "vehicle" },
+    { "name": "road-3", "kind": "road", "direction": "left", "spawn": "vehicle" },
+    { "name": "road-4", "kind": "road", "direction": "right", "spawn": "vehicle" },
+    { "name": "road-5", "kind": "road", "direction": "left", "spawn": "vehicle" },
+    { "name": "bank", "kind": "bank" }
+  ]
+}

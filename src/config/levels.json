@@ -1,0 +1,11 @@
+{
+  "capLevel": 12,
+  "baseObjectsPerLane": 3,
+  "laneSpeedTilesPerSecond": { "river": 1.2, "road": 1.6 },
+  "speedIncreasePerLevel": 0.08,
+  "densityIncreasePerLevel": 0.05,
+  "divingShareStart": 0.0,
+  "divingShareIncreasePerLevel": 0.06,
+  "logLengthStartTiles": 4,
+  "logLengthMinTiles": 2
+}
