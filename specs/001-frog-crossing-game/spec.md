@@ -10,6 +10,15 @@
 
 **Source**: `brd.md` (Project Hop BRD, version 0.1). Requirement IDs in parentheses (FR-, NFR-, AC-) refer to that document.
 
+## Clarifications
+
+### Session 2026-11-12
+
+- Q: Which phone should be the reference device for the 60 fps requirement? (NFR-002, AC-7) → A: iPhone SE (3rd generation, 2022)
+- Q: Should speed assist change how many points a player earns? (FR-050, FR-040) → A: No, same points as normal play, with an assist marker in the table
+- Q: If the game is open in two browser tabs at once, how should the high-score table be saved? (FR-039, AC-6) → A: Last save wins
+- Q: Which languages should the game's text support in version 1? → A: English only
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Cross the Road and Survive (Priority: P1)
@@ -232,6 +241,7 @@ installed copy, and play a full game.
   resumes in the same state.
 - What happens when a player hops onto a bay that is already filled? One life is lost, the same as
   landing on a wall.
+- What happens when the game is open in two tabs and both save high scores? The last save wins, and an entry saved by the other tab can be overwritten.
 
 ## Requirements *(mandatory)*
 
@@ -333,7 +343,7 @@ installed copy, and play a full game.
 **Scores and saved data**
 
 - **FR-039**: The top-10 table MUST store initials, score, level reached, date, and an assist flag.
-  Data MUST be saved on the device only (FR-39).
+  Data MUST be saved on the device only (FR-39). If the game is open in more than one tab, each save overwrites the table as the last save left it (last save wins).
 - **FR-040**: Scores set with speed assist MUST show an assist marker in the table (FR-40).
 - **FR-041**: Settings MUST persist between sessions on the same device (FR-41).
 - **FR-042**: If browser storage is blocked or full, the game MUST still play and MUST show a short
@@ -359,7 +369,7 @@ installed copy, and play a full game.
   pattern as well as hue. The palette MUST be checked against protanopia, deuteranopia, and
   tritanopia simulations (FR-49).
 - **FR-050**: Speed assist MUST set lane speeds to 70% and the timer to 45 seconds. It MUST be
-  changeable only between games (FR-50).
+  changeable only between games (FR-50). Speed assist MUST NOT change point values. Scores set with it are marked in the table (FR-040).
 - **FR-051**: The game MUST support full keyboard play, as in FR-030 and FR-038 (FR-51).
 - **FR-052**: UI text MUST meet WCAG 2.2 AA contrast, with 4.5:1 for body text (FR-52).
 
@@ -378,7 +388,7 @@ installed copy, and play a full game.
 
 - **NFR-001**: The game MUST run in the latest two major versions of Chrome, Edge, Firefox, and
   Safari on desktop; Safari on iOS; and Chrome on Android (NFR-1).
-- **NFR-002**: The game MUST hold 60 frames per second on a mid-range phone from 2022 or later and
+- **NFR-002**: The game MUST hold 60 frames per second on the reference phone (iPhone SE, 3rd generation, 2022) and
   on current desktops (NFR-2). Input-to-hop latency MUST be under 50 ms (NFR-4).
 - **NFR-003**: Game logic MUST run on a fixed timestep, so 60 Hz, 120 Hz, and 144 Hz screens play
   the same (NFR-3).
@@ -428,7 +438,7 @@ installed copy, and play a full game.
 - **SC-003**: Players can clear all five bays in a level, and the next level is noticeably faster
   than the one before it.
 - **SC-004**: Speed and density stop increasing at the cap level, and the game remains playable at
-  that level on a mid-range phone at a steady frame rate.
+  that level on the reference phone (iPhone SE, 3rd generation) at a steady frame rate.
 - **SC-005**: Players can tell every hazard type apart under three types of color-blindness
   simulation.
 - **SC-006**: A player who installs the game can play a full game with no network connection.
@@ -452,7 +462,7 @@ installed copy, and play a full game.
   choose a language or framework.
 - The grid is 13 by 13 tiles. The sprite size and grid scale target (for example 16 px tiles) are
   open (BRD OI-5) and will be decided during planning.
-- The reference "mid-range phone from 2022 or later" will be named during planning so the frame-rate
+- The reference phone for the frame-rate requirement is an iPhone SE (3rd generation, 2022), set by clarification on 2026-11-12, so the frame-rate
   requirement can be tested.
 - Players use a current browser with scripting enabled and local browser storage available
   (BRD assumptions).
@@ -463,3 +473,4 @@ installed copy, and play a full game.
 - Endless mode, time attack, daily challenge, extra river hazards, bonus pickups, reduced-motion mode,
   and gamepad support are future versions and out of scope for v1 (BRD section 11).
 - Landscape play on phones is not supported. Only portrait is supported (BRD section 3.2).
+- All game text is English only in v1. Other languages are out of scope (clarified 2026-11-12).
