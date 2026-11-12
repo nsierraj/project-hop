@@ -287,9 +287,15 @@ function maybeShowStorageNotice(): void {
 function startGame(): void {
   pending = [];
   unlockAudio();
-  game.start(settings.speedAssist);
+  game.start(settings.speedAssist, debugStartLevel());
   setScreen('none');
   music.start(settings.musicVolume, settings.muted);
+}
+
+/** Level to start at. Only the debug overlay (?debug) can change it, for the frame-rate check. */
+function debugStartLevel(): number {
+  if (!debug.enabled) return 1;
+  return Number(new URLSearchParams(window.location.search).get('level')) || 1;
 }
 
 function applySettings(): void {

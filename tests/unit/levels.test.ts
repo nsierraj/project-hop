@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { config } from './helpers';
 import { levelParams } from '../../src/core/levels';
+import { Game } from '../../src/core/game';
 
 const cfg = config().levels;
 
@@ -24,5 +25,14 @@ describe('level progression (AC-4, FR-23)', () => {
   it('stops changing after the cap level', () => {
     expect(levelParams(cfg.capLevel + 1, cfg)).toEqual(levelParams(cfg.capLevel, cfg));
     expect(levelParams(40, cfg)).toEqual(levelParams(cfg.capLevel, cfg));
+  });
+});
+
+describe('starting level', () => {
+  it('a game can start at level 12 for the frame-rate check', () => {
+    const game = new Game(config(), 5);
+    game.start(false, 12);
+    expect(game.level).toBe(12);
+    expect(game.lanes.length).toBeGreaterThan(0);
   });
 });

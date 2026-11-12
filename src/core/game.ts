@@ -76,11 +76,14 @@ export class Game {
     this.celebrationSteps = Math.round(cfg.game.levelClearCelebrationMs / STEP_MS);
   }
 
-  /** Starts a new game. The same seed always produces the same game. */
-  start(assisted: boolean): void {
+  /**
+   * Starts a new game. The same seed always produces the same game.
+   * startLevel is used by the debug frame-timing check (?debug&level=12) and defaults to 1.
+   */
+  start(assisted: boolean, startLevel = 1): void {
     this.rng = new Rng(this.seed);
     this.assisted = assisted;
-    this.level = 1;
+    this.level = Math.max(1, Math.floor(startLevel));
     this.score = 0;
     this.lives = this.cfg.game.lives.start;
     this.bonusLifeAwarded = false;
