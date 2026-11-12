@@ -30,9 +30,12 @@ tests substitute values through it.
   },
   "hop": { "durationMs": 120, "bufferSize": 1 },
   "swipe": { "minDistanceCssPx": 24, "maxDurationMs": 400 },
+  "dive": { "surfacedMs": 3000, "sinkingMs": 1000, "submergedMs": 2000, "risingMs": 800 },
   "divingSinkWarningMs": 750,
   "speedAssist": { "laneSpeedFactor": 0.7, "lifeTimerSeconds": 45 },
-  "highScores": { "maxEntries": 10, "initialsLength": 3 }
+  "highScores": { "maxEntries": 10, "initialsLength": 3 },
+  "levelClearCelebrationMs": 2000,
+  "deathAnimationMs": 500
 }
 ```
 
@@ -53,12 +56,15 @@ tests substitute values through it.
 | `speedAssist.lifeTimerSeconds` | number | >= `lifeTimerSeconds`. The spec sets 45. |
 | `highScores.maxEntries` | integer | Must be 10 (FR-39) |
 | `highScores.initialsLength` | integer | Must be 3 (FR-24) |
+| `dive.*Ms` | integer | Each >= 1. `sinkingMs` must be >= `divingSinkWarningMs`. |
+| `levelClearCelebrationMs`, `deathAnimationMs` | number | >= 0 |
 
 ## `levels.json`
 
 ```json
 {
   "capLevel": 12,
+  "baseObjectsPerLane": 3,
   "laneSpeedTilesPerSecond": { "river": 1.2, "road": 1.6 },
   "speedIncreasePerLevel": 0.08,
   "densityIncreasePerLevel": 0.05,
@@ -72,6 +78,7 @@ tests substitute values through it.
 | Key | Type | Constraint |
 |-----|------|------------|
 | `capLevel` | integer | >= 1. The spec sets 12 (FR-23). |
+| `baseObjectsPerLane` | integer | >= 1. Objects per lane at level 1, before density scaling. |
 | `laneSpeedTilesPerSecond.*` | number | > 0. Base speeds are placeholders until playtests (BRD OI-4). |
 | `*IncreasePerLevel` | number | >= 0 |
 | `divingShareStart`, `divingShareIncreasePerLevel` | number | 0 to 1 |
